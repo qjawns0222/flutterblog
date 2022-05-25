@@ -80,7 +80,20 @@ class MyHome extends StatelessWidget {
       body: Column(
         children: [
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('hi'),
+                  duration: Duration(seconds: 5),
+                ),
+              );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => second(),
+                ),
+              );
+            },
             child: Text(
               'elevated',
               style: TextStyle(color: Colors.black),
@@ -95,6 +108,54 @@ class MyHome extends StatelessWidget {
           ),
           TextButton(onPressed: () {}, child: Text('TextButton')),
           OutlinedButton(onPressed: () {}, child: Text('OutlinedButton'))
+        ],
+      ),
+    );
+  }
+}
+
+class second extends StatelessWidget {
+  const second({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ScaffoldMessenger(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('second'),
+        ),
+        body: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => third(),
+                  ),
+                );
+              },
+              child: Text('jo'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class third extends StatelessWidget {
+  const third({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('third'),
+      ),
+      body: Column(
+        children: [
+          Text('hi'),
         ],
       ),
     );
