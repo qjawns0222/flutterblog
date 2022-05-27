@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-void main()=>runApp(MyApp());
+void main() => runApp(MyApp());
+
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -13,71 +14,74 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'hi',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
       debugShowCheckedModeBanner: true,
-      home: stf(),
+      home: dice(),
     );
   }
 }
 
-
-class stf extends StatefulWidget {
-  const stf({Key? key}) : super(key: key);
+class dice extends StatefulWidget {
+  const dice({Key? key}) : super(key: key);
 
   @override
-  State<stf> createState() => _stfState();
+  State<dice> createState() => _diceState();
 }
 
-class _stfState extends State<stf> {
-
+class _diceState extends State<dice> {
   @override
   Widget build(BuildContext context) {
-    int a=0;
     return Scaffold(
       appBar: AppBar(
-        title: Text('stateful'),
-      ),
-      body: Column(
-        children: [
-          ElevatedButton(
-              onPressed: (){
-                setState(() {
-                  a=a+1;
-                });
-                print(a);
-              },
-              child: Text('숫자증가'),
-          ),
-          Text('$a'),
+        title: Text('hello'),
+        centerTitle: true,
+        backgroundColor: Colors.purple,
+        leading: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
+        actions: [
+          IconButton(icon: Icon(Icons.search), onPressed: () {}),
         ],
       ),
-    );
-  }
-}
-
-class prastl extends StatelessWidget {
-  prastl({Key? key}) : super(key: key);
-  int a=0;
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('stateful'),
-      ),
       body: Column(
         children: [
-          ElevatedButton(
-            onPressed: (){
-
-                a=a+1;
-
-              print(a);
-            },
-            child: Text('숫자증가'),
+          Padding(
+            padding: EdgeInsets.only(top: 50),
           ),
-          Text('$a'),
+          Center(
+              child: Image(
+            image: AssetImage('image/bluelogo.png'),
+            width: 170,
+            height: 170,
+          )),
+          Form(
+            child: Theme(
+              data: ThemeData(
+                  inputDecorationTheme: InputDecorationTheme(
+                labelStyle: TextStyle(
+                  color: Colors.red,
+                  fontSize: 20.0,
+                ),
+              ),
+              ),
+              child: Container(
+                padding: EdgeInsets.all(40),
+                child: Column(
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Enter"dice"',
+                      ),
+                      keyboardType: TextInputType.text,
+                    ),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Enter"password"',
+                      ),
+                      keyboardType: TextInputType.text,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );
