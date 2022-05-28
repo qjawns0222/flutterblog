@@ -40,50 +40,68 @@ class _diceState extends State<dice> {
           IconButton(icon: Icon(Icons.search), onPressed: () {}),
         ],
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(top: 50),
-          ),
-          Center(
-              child: Image(
-            image: AssetImage('image/bluelogo.png'),
-            width: 170,
-            height: 170,
-          )),
-          Form(
-            child: Theme(
-              data: ThemeData(
-                  inputDecorationTheme: InputDecorationTheme(
-                labelStyle: TextStyle(
-                  color: Colors.red,
-                  fontSize: 20.0,
-                ),
-              ),
-              ),
-              child: Container(
-                padding: EdgeInsets.all(40),
-                child: Column(
-                  children: [
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Enter"dice"',
-                      ),
-                      keyboardType: TextInputType.text,
-                    ),
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Enter"password"',
-                      ),
-                      keyboardType: TextInputType.text,
-                    ),
-                  ],
-                ),
-              ),
+      body:GestureDetector(
+
+        onTap: (){FocusScope.of(context).unfocus();},
+      child:SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 50),
             ),
-          )
-        ],
+            Center(
+                child: Image(
+              image: AssetImage('image/bluelogo.png'),
+              width: 170,
+              height: 170,
+            )),
+            Form(
+              child: Theme(
+                data: ThemeData(
+                    inputDecorationTheme: InputDecorationTheme(
+                  labelStyle: TextStyle(
+                    color: Colors.red,
+                    fontSize: 20.0,
+                  ),
+                ),
+                ),
+                child: Container(
+                  padding: EdgeInsets.all(40),
+                  child: Column(
+                    children: [
+                      TextField(
+                        decoration: InputDecoration(
+                          labelText: 'Enter"dice"',
+                        ),
+                        keyboardType: TextInputType.text,
+                      ),
+                      TextField(
+                        decoration: InputDecoration(
+                          labelText: 'Enter"password"',
+                        ),
+                        keyboardType: TextInputType.text,
+                      ),
+                      SizedBox(
+                        height: 40.0,
+                      ),
+                      ElevatedButton(
+                          onPressed: (){},
+                          child: Icon(Icons.arrow_forward),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.yellow,
+                          minimumSize: Size(100.0, 50.0),
+                          onPrimary: Colors.blue,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
+    )
     );
   }
 }
