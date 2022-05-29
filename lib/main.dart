@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterblog/Dice.dart';
 
 void main() => runApp(MyApp());
 
@@ -28,6 +29,8 @@ class dice extends StatefulWidget {
 }
 
 class _diceState extends State<dice> {
+  TextEditingController id=TextEditingController();
+  TextEditingController password=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,14 +73,18 @@ class _diceState extends State<dice> {
                   child: Column(
                     children: [
                       TextField(
+                        controller: id,
                         decoration: InputDecoration(
                           labelText: 'Enter"dice"',
                         ),
                         keyboardType: TextInputType.text,
                       ),
                       TextField(
+                        obscureText: true,
+                        controller: password,
                         decoration: InputDecoration(
                           labelText: 'Enter"password"',
+
                         ),
                         keyboardType: TextInputType.text,
                       ),
@@ -85,14 +92,31 @@ class _diceState extends State<dice> {
                         height: 40.0,
                       ),
                       ElevatedButton(
-                          onPressed: (){},
+                          onPressed: (){
+                            if (id.text == 'dice' &&
+                                password.text == '1234') {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Dice()),
+                              );
+                            } else if (id.text != 'dice' &&
+                                password.text == '1234') {
+                              showSnackBar(context,"아이디를 확인해주세요");
+                            } else if (id.text == 'dice' &&
+                                password.text != '1234') {
+                              showSnackBar(context,"비밀번호를 확인해주세요");
+                            }else{
+                              showSnackBar(context,"아이디와 비밀번호를 확인해주세요");
+                            }
+                          },
                           child: Icon(Icons.arrow_forward),
                         style: ElevatedButton.styleFrom(
                           primary: Colors.yellow,
                           minimumSize: Size(100.0, 50.0),
                           onPrimary: Colors.blue,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -104,4 +128,14 @@ class _diceState extends State<dice> {
     )
     );
   }
+}
+void showSnackBar(BuildContext context,String text) {
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    content: Text(
+      text,
+      textAlign: TextAlign.center,
+    ),
+    duration: Duration(seconds: 2),
+    backgroundColor: Colors.blue,
+  ));
 }
