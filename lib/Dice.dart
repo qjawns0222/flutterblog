@@ -16,6 +16,53 @@ class _DiceState extends State<Dice> {
         centerTitle: true,
         backgroundColor: Colors.purple,
       ),
+      body: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 100),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+
+                children: [
+                  Expanded(
+                    flex: 2,
+                      child: Image(
+                    image: AssetImage('image/bluelogo.png'),
+                  ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    flex: 2,
+                      child: Image(
+                    image: AssetImage('image/bluelogo.png'),
+                  ),
+                  ),
+
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            ButtonTheme(
+
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Icon(
+                  Icons.play_arrow,
+                  color: Colors.white,
+                  size: 50.0,
+                ),
+                style: ElevatedButton.styleFrom(primary: Colors.purpleAccent),
+
+              ),
+            )
+
+          ],
+        ),
+
     );
   }
 }
