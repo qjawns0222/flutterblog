@@ -1,13 +1,18 @@
+import 'dart:math';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 
 class Dice extends StatefulWidget {
   const Dice({Key? key}) : super(key: key);
+
 
   @override
   State<Dice> createState() => _DiceState();
 }
 
 class _DiceState extends State<Dice> {
+  int left=1;
+  int right=1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +32,7 @@ class _DiceState extends State<Dice> {
                   Expanded(
                     flex: 2,
                       child: Image(
-                    image: AssetImage('image/bluelogo.png'),
+                    image: AssetImage('image/dice$left.png'),
                   ),
                   ),
                   SizedBox(
@@ -36,7 +41,7 @@ class _DiceState extends State<Dice> {
                   Expanded(
                     flex: 2,
                       child: Image(
-                    image: AssetImage('image/bluelogo.png'),
+                    image: AssetImage('image/dice$right.png'),
                   ),
                   ),
 
@@ -49,7 +54,19 @@ class _DiceState extends State<Dice> {
             ButtonTheme(
 
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    left=Random().nextInt(6)+1;
+                    right=Random().nextInt(6)+1;
+                  });
+                  Fluttertoast.showToast(
+                      msg: "Left Dice:{$left}, Right Dice:{$right}",
+                      backgroundColor: Colors.purpleAccent,
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      textColor: Colors.black
+                  );
+                },
                 child: Icon(
                   Icons.play_arrow,
                   color: Colors.white,
